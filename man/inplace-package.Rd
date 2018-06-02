@@ -4,12 +4,14 @@
 \name{inplace-package}
 \alias{inplace}
 \alias{inplace-package}
-\title{inplace: What the Package Does (One Line, Title Case)}
+\title{inplace: In-place Operators for R}
 \description{
-What the package does (one paragraph).
+It provides in-place operators for R
+that are equivalent to '+=', '-=', '*=', '/=' in C++.
+Those can be applied on integer|double vectors|matrices.
 }
 \author{
-\strong{Maintainer}: First Last \email{first.last@example.com}
+\strong{Maintainer}: Florian Privé \email{florian.prive.21@gmail.com}
 
 }
 \keyword{internal}

@@ -3,7 +3,7 @@
 
 /******************************************************************************/
 
-#include <utils.h>
+#include <inplace/utils.h>
 
 using namespace Rcpp;
 using std::size_t;
@@ -11,7 +11,7 @@ using std::size_t;
 
 /******************************************************************************/
 
-template <int RTYPE, typename T>
+template <int RTYPE, typename CTYPE>
 class VecAcc : public Vector<RTYPE> {
 public:
   VecAcc(Vector<RTYPE>& vec, 
@@ -30,7 +30,7 @@ public:
       _elem_ind = elem_ind2;
     }
   
-  inline T& operator[](size_t k) {
+  inline CTYPE& operator[](size_t k) {
     // https://stackoverflow.com/a/32087373/6103040
     return Vector<RTYPE>::operator[](_elem_ind[k]);
   }
@@ -43,7 +43,7 @@ protected:
 
 /******************************************************************************/
 
-template <int RTYPE, typename T>
+template <int RTYPE, typename CTYPE>
 class MatAcc : public Matrix<RTYPE> {
 public:
   MatAcc(Matrix<RTYPE>& mat,
@@ -74,7 +74,7 @@ public:
       _col_ind = col_ind2;
     }
   
-  inline T& operator()(size_t i, size_t j) {
+  inline CTYPE& operator()(size_t i, size_t j) {
     // https://stackoverflow.com/a/32087373/6103040
     return Matrix<RTYPE>::operator()(_row_ind[i], _col_ind[j]);
   }
