@@ -1,11 +1,22 @@
 Package: inplace
 Version: 0.0.0.9000
-Title: What the Package Does (One Line, Title Case)
-Description: What the package does (one paragraph).
-Authors@R: person("First", "Last", , "first.last@example.com", c("aut", "cre"))
-License: What license it uses
+Title: In-place Operators for R
+Description: It provides in-place operators for R 
+    that are equivalent to '+=', '-=', '*=', '/=' in C++. 
+    Those can be applied on integer|double vectors|matrices.
+Authors@R: person("Florian", "Privé", 
+                  email = "florian.prive.21@gmail.com", 
+                  role = c("aut", "cre"))
+License: GPL-3
+Language: en-US
 Encoding: UTF-8
 LazyData: true
 ByteCompile: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.0.1
+LinkingTo: 
+    Rcpp
+Imports: 
+    Rcpp
+Suggests: 
+    data.table
