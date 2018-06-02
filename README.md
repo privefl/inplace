@@ -7,6 +7,7 @@ This is under development.
 ## Example
 
 ```{r}
+# devtools::install_github("privefl/inplace")
 library(inplace)
 
 address <- data.table::address
