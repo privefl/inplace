@@ -45,7 +45,7 @@ eval(as.call(tmp))
 
 
 separate_call <- function(call) {
-  call.sep <- as.list(substitute(call))
+  call.sep <- substitute(call)
   parent_env <- parent.frame()
   x   <- eval(call.sep[[2]], parent_env)
   ind <- eval(call.sep[[3]], parent_env)
