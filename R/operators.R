@@ -1,19 +1,39 @@
-################################################################################
-
-#' Title
+#' In-place operators
 #'
-#' @param call 
-#' @param val 
+#' @param x Variable.
+#' @param value Value.
 #'
-#' @return
-#' @export
+#' @return `NULL` (invisibly).
+#' 
+#' @name inplace-op
 #'
 #' @examples
-`%*<-%` <- function(call, val) {
+NULL
+
+################################################################################
+
+#' @rdname inplace-op
+#' @export
+`%*<-%` <- function(x, value) {
   
-  infos_call <- interpret_call(substitute(call), val, "multiply")
+  infos_call <- interpret_call(substitute(x), value, "multiply")
   
-  if (typeof(infos_call$x) == "integer") assert_int_ish(val)
+  if (typeof(infos_call$x) == "integer") assert_int_ish(value)
+  
+  do.call(infos_call[[1]], infos_call[-1])
+  
+  invisible()
+}
+
+################################################################################
+
+#' @rdname inplace-op
+#' @export
+`%+<-%` <- function(x, value) {
+  
+  infos_call <- interpret_call(substitute(x), value, "add")
+  
+  if (typeof(infos_call$x) == "integer") assert_int_ish(value)
   
   do.call(infos_call[[1]], infos_call[-1])
   

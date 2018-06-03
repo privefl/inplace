@@ -5,6 +5,84 @@
 
 using namespace Rcpp;
 
+// add_all_mult
+void add_all_mult(SEXP x, SEXP i, SEXP j, SEXP val);
+RcppExport SEXP _inplace_add_all_mult(SEXP xSEXP, SEXP iSEXP, SEXP jSEXP, SEXP valSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type i(iSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type j(jSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type val(valSEXP);
+    add_all_mult(x, i, j, val);
+    return R_NilValue;
+END_RCPP
+}
+// add_subvec_mult
+void add_subvec_mult(SEXP x, const NumericVector& i, SEXP j, SEXP val);
+RcppExport SEXP _inplace_add_subvec_mult(SEXP xSEXP, SEXP iSEXP, SEXP jSEXP, SEXP valSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type i(iSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type j(jSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type val(valSEXP);
+    add_subvec_mult(x, i, j, val);
+    return R_NilValue;
+END_RCPP
+}
+// add_submat_mult
+void add_submat_mult(SEXP x, const IntegerVector& i, const IntegerVector& j, SEXP val);
+RcppExport SEXP _inplace_add_submat_mult(SEXP xSEXP, SEXP iSEXP, SEXP jSEXP, SEXP valSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const IntegerVector& >::type i(iSEXP);
+    Rcpp::traits::input_parameter< const IntegerVector& >::type j(jSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type val(valSEXP);
+    add_submat_mult(x, i, j, val);
+    return R_NilValue;
+END_RCPP
+}
+// add_all_one
+void add_all_one(SEXP x, SEXP i, SEXP j, SEXP val);
+RcppExport SEXP _inplace_add_all_one(SEXP xSEXP, SEXP iSEXP, SEXP jSEXP, SEXP valSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type i(iSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type j(jSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type val(valSEXP);
+    add_all_one(x, i, j, val);
+    return R_NilValue;
+END_RCPP
+}
+// add_subvec_one
+void add_subvec_one(SEXP x, const NumericVector& i, SEXP j, SEXP val);
+RcppExport SEXP _inplace_add_subvec_one(SEXP xSEXP, SEXP iSEXP, SEXP jSEXP, SEXP valSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type i(iSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type j(jSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type val(valSEXP);
+    add_subvec_one(x, i, j, val);
+    return R_NilValue;
+END_RCPP
+}
+// add_submat_one
+void add_submat_one(SEXP x, const IntegerVector& i, const IntegerVector& j, SEXP val);
+RcppExport SEXP _inplace_add_submat_one(SEXP xSEXP, SEXP iSEXP, SEXP jSEXP, SEXP valSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const IntegerVector& >::type i(iSEXP);
+    Rcpp::traits::input_parameter< const IntegerVector& >::type j(jSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type val(valSEXP);
+    add_submat_one(x, i, j, val);
+    return R_NilValue;
+END_RCPP
+}
 // GET_ERROR_TYPE
 const char* const GET_ERROR_TYPE();
 RcppExport SEXP _inplace_GET_ERROR_TYPE() {
@@ -125,6 +203,12 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_inplace_add_all_mult", (DL_FUNC) &_inplace_add_all_mult, 4},
+    {"_inplace_add_subvec_mult", (DL_FUNC) &_inplace_add_subvec_mult, 4},
+    {"_inplace_add_submat_mult", (DL_FUNC) &_inplace_add_submat_mult, 4},
+    {"_inplace_add_all_one", (DL_FUNC) &_inplace_add_all_one, 4},
+    {"_inplace_add_subvec_one", (DL_FUNC) &_inplace_add_subvec_one, 4},
+    {"_inplace_add_submat_one", (DL_FUNC) &_inplace_add_submat_one, 4},
     {"_inplace_GET_ERROR_TYPE", (DL_FUNC) &_inplace_GET_ERROR_TYPE, 0},
     {"_inplace_GET_ERROR_DIM", (DL_FUNC) &_inplace_GET_ERROR_DIM, 0},
     {"_inplace_GET_ERROR_BOUNDS", (DL_FUNC) &_inplace_GET_ERROR_BOUNDS, 0},
