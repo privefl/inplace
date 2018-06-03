@@ -1,30 +1,30 @@
 /******************************************************************************/
 
-#include <inplace/accessors.h>
+#include <accessors.h>
 
 /******************************************************************************/
 
 #define ON_VEC(RTYPE, CTYPE) {                                                 \
-  multiply< Vector<RTYPE>, CTYPE >(x, as<CTYPE>(val));                         \
+  multiply_one< Vector<RTYPE>, CTYPE >(x, as<CTYPE>(val));                     \
   break;                                                                       \
-}    
+}
 
 #define ON_SUB_VEC(RTYPE, CTYPE) {                                             \
   Vector<RTYPE> x2(x);                                                         \
-  multiply(VecAcc<RTYPE, CTYPE>(x2, i), as<CTYPE>(val));                       \
+  multiply_one(VecAcc<RTYPE, CTYPE>(x2, i), as<CTYPE>(val));                   \
   break;                                                                       \
-}                                                              \
+}
 
 #define ON_SUB_MAT(RTYPE, CTYPE) {                                             \
-  Matrix<RTYPE> x2(x);                                                          \
-  multiply(MatAcc<RTYPE, CTYPE>(x2, i, j), as<CTYPE>(val));                    \
+  Matrix<RTYPE> x2(x);                                                         \
+  multiply_one(MatAcc<RTYPE, CTYPE>(x2, i, j), as<CTYPE>(val));                \
   break;                                                                       \
-} 
+}
 
 /******************************************************************************/
 
 template <class C_VEC, typename CTYPE>
-void multiply(C_VEC x, CTYPE val) {
+void multiply_one(C_VEC x, CTYPE val) {
   
   size_t n = x.size();
   for (size_t i = 0; i < n; i++) {

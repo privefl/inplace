@@ -3,7 +3,7 @@
 
 /******************************************************************************/
 
-#include <inplace/utils.h>
+#include <utils.h>
 
 using namespace Rcpp;
 using std::size_t;
