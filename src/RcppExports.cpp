@@ -45,6 +45,45 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// multiply_all_mult
+void multiply_all_mult(SEXP x, SEXP i, SEXP j, SEXP val);
+RcppExport SEXP _inplace_multiply_all_mult(SEXP xSEXP, SEXP iSEXP, SEXP jSEXP, SEXP valSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type i(iSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type j(jSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type val(valSEXP);
+    multiply_all_mult(x, i, j, val);
+    return R_NilValue;
+END_RCPP
+}
+// multiply_subvec_mult
+void multiply_subvec_mult(SEXP x, const NumericVector& i, SEXP j, SEXP val);
+RcppExport SEXP _inplace_multiply_subvec_mult(SEXP xSEXP, SEXP iSEXP, SEXP jSEXP, SEXP valSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type i(iSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type j(jSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type val(valSEXP);
+    multiply_subvec_mult(x, i, j, val);
+    return R_NilValue;
+END_RCPP
+}
+// multiply_submat_mult
+void multiply_submat_mult(SEXP x, const IntegerVector& i, const IntegerVector& j, SEXP val);
+RcppExport SEXP _inplace_multiply_submat_mult(SEXP xSEXP, SEXP iSEXP, SEXP jSEXP, SEXP valSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const IntegerVector& >::type i(iSEXP);
+    Rcpp::traits::input_parameter< const IntegerVector& >::type j(jSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type val(valSEXP);
+    multiply_submat_mult(x, i, j, val);
+    return R_NilValue;
+END_RCPP
+}
 // multiply_all_one
 void multiply_all_one(SEXP x, SEXP i, SEXP j, SEXP val);
 RcppExport SEXP _inplace_multiply_all_one(SEXP xSEXP, SEXP iSEXP, SEXP jSEXP, SEXP valSEXP) {
@@ -90,6 +129,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"_inplace_GET_ERROR_DIM", (DL_FUNC) &_inplace_GET_ERROR_DIM, 0},
     {"_inplace_GET_ERROR_BOUNDS", (DL_FUNC) &_inplace_GET_ERROR_BOUNDS, 0},
     {"_inplace_GET_ERROR_FATAL", (DL_FUNC) &_inplace_GET_ERROR_FATAL, 0},
+    {"_inplace_multiply_all_mult", (DL_FUNC) &_inplace_multiply_all_mult, 4},
+    {"_inplace_multiply_subvec_mult", (DL_FUNC) &_inplace_multiply_subvec_mult, 4},
+    {"_inplace_multiply_submat_mult", (DL_FUNC) &_inplace_multiply_submat_mult, 4},
     {"_inplace_multiply_all_one", (DL_FUNC) &_inplace_multiply_all_one, 4},
     {"_inplace_multiply_subvec_one", (DL_FUNC) &_inplace_multiply_subvec_one, 4},
     {"_inplace_multiply_submat_one", (DL_FUNC) &_inplace_multiply_submat_one, 4},

@@ -17,6 +17,18 @@ GET_ERROR_FATAL <- function() {
     .Call(`_inplace_GET_ERROR_FATAL`)
 }
 
+multiply_all_mult <- function(x, i, j, val) {
+    invisible(.Call(`_inplace_multiply_all_mult`, x, i, j, val))
+}
+
+multiply_subvec_mult <- function(x, i, j, val) {
+    invisible(.Call(`_inplace_multiply_subvec_mult`, x, i, j, val))
+}
+
+multiply_submat_mult <- function(x, i, j, val) {
+    invisible(.Call(`_inplace_multiply_submat_mult`, x, i, j, val))
+}
+
 multiply_all_one <- function(x, i, j, val) {
     invisible(.Call(`_inplace_multiply_all_one`, x, i, j, val))
 }

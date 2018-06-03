@@ -86,7 +86,7 @@ interpret_call <- function(call, val, op) {
     
   } else if (call_len > 4) {
     
-    stop2("This is not yet available for arrays.")
+    stop2("This is not yet available for arrays of more than 2 dimensions.")
     
   } else {
     
@@ -94,14 +94,7 @@ interpret_call <- function(call, val, op) {
     
   }
   
-  
-  if (length(val) == 1) {
-    val_append <- "one"
-  } else {
-    assert_lengths(x, val)
-    dim(val) <- dim(x)
-    val_append <- "mult"
-  }
+  val_append <- `if`(length(val) == 1, "one", "mult")
   
   list(
     fun = paste(op, acc_append, val_append, sep = "_"),
