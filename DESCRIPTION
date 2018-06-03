@@ -19,4 +19,5 @@ LinkingTo:
 Imports: 
     Rcpp
 Suggests: 
-    data.table
+    data.table,
+    testthat
