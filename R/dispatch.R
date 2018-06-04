@@ -3,8 +3,7 @@
 # Transform negative or boolean indices to positive indices
 transform_ind <- function(k, lim) {
   
-  # if (missing(k))
-  #   return(seq_len(lim))
+  if (is.null(k)) return(seq_len(lim))
   
   if (is.character(k))
     stop2("Character subsetting is not allowed.")
@@ -40,8 +39,8 @@ transform_i_only <- function(i, x) {
 
 ################################################################################
 
-is_missing_name <- function(name) {
-  identical(as.character(name), "")
+process_name <- function(name) {
+  `if`(identical(as.character(name), ""), NULL, name)
 }
 
 interpret_call <- function(call, val, op) {
@@ -61,7 +60,7 @@ interpret_call <- function(call, val, op) {
     
     x <- eval(call_list[[2]], parent_env)
     
-    if (is_missing_name(call_list[[3]])) {    ## x[]
+    if (is.null(process_name(call_list[[3]]))) {    ## x[]
       acc_append <- "all"
     } else {                                  ## x[i]
       acc_append <- "subvec"
@@ -74,15 +73,8 @@ interpret_call <- function(call, val, op) {
     x <- eval(call_list[[2]], parent_env)
     stopifnot(is.matrix(x))
     
-    if (!is_missing_name(call_list[[3]]))
-      i <- transform_ind(eval(call_list[[3]], parent_env), nrow(x))
-    
-    if (!is_missing_name(call_list[[4]]))
-      j <- transform_ind(eval(call_list[[4]], parent_env), ncol(x))
-    
-    if (is.null(i) && is.null(j)) {           ## x[,] -> same as x[]
-      acc_append <- "all"
-    }
+    i <- transform_ind(eval(process_name(call_list[[3]]), parent_env), nrow(x))
+    j <- transform_ind(eval(process_name(call_list[[4]]), parent_env), ncol(x))
     
   } else if (call_len > 4) {
     

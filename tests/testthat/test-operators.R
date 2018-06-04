@@ -4,7 +4,9 @@ context("test-operators.R")
 
 ################################################################################
 
-test_mat <- function(x, val) {
+address <- data.table::address
+
+test_fun <- function(x, val) {
   
   call_x   <- deparse(substitute(x))
   call_val <- deparse(substitute(val))
@@ -15,45 +17,90 @@ test_mat <- function(x, val) {
                     paste(call_x, op, call_val))
   
   eval(parse(text = assign), parent.frame())
-  expect_false(isTRUE(
-    eval(all.equal(X, X2), parent.frame())
+  print(val)
+  print(assign)
+  print(X)
+  print(X2)
+  stopifnot(!(
+    eval(identical(X, X2), parent.frame())
   ))
   
   assign <- sprintf("%s %%%s<-%% %s", call_x, op, call_val)
   eval(parse(text = assign), parent.frame())
-  expect_true(eval(all.equal(X, X2), parent.frame()))
+  expect_true(eval(identical(X, X2), parent.frame()))
   expect_true(eval(identical(data.table::address(X), addr0), parent.frame()))
 }
 
-X <- matrix(rnorm(256, mean = 0, sd = 10), 16)
+X <- rnorm(256, mean = 0, sd = 10)
+DIMS <- list(NULL, c(8, 32))
 
 ind <- 1:5
 op <- "*"
-test_mat(X[ind], 2)
+test_fun(X[ind], 2)
 
 ################################################################################
 
-test_that("works for type double", {
+r <- function(n, type) {
+  x <- rnorm(n, mean = 1, sd = 1)
+  `if`(type == "integer", round(x), x)
+}
+
+test_that("in-place operators work in common cases", {
   
-  for (test_acc in TEST.ACCS) {
+  for (type in c("double", "integer")) {
     
-    test_acc(X[])
-    test_acc(X[1, ])
-    test_acc(X[cbind(1:5, 1:5)])
+    OPS <- c('*', '/', '-', '+')
+    if (type == "integer") OPS <- setdiff(OPS, '/')
     
-    for (ind in list(1:5, -(1:5), c(TRUE, FALSE, TRUE))) {
+    for (op in OPS) {
       
-      test_mat(X[ind, ], rnorm(1))
-      test_mat(X[, 1], rnorm(1))
-      test_mat(X[, 1], rnorm(nrow(X)))
-      test_mat(X[1, 1])
-      test_mat(X[ind, 1])
-      test_mat(X[, ind])
-      test_mat(X[1, ind])
-      test_mat(X[ind, ind])
-    }
+      for (dim_X in DIMS) {
+        
+        dim(X) <- dim_X
+        
+        one_val  <- r(1, type)
+        five_val <- r(5, type)
+        
+        test_fun(X, one_val)
+        test_fun(X[], one_val)
+        test_fun(X[1:5], five_val)
+        test_fun(X[6:10], five_val)
+        
+        if (is.matrix(X)) {
+          
+          n_val <- r(nrow(X), type)
+          m_val <- r(ncol(X), type)
+          
+          test_fun(X[2, ],   one_val)
+          test_fun(X[2, ],   m_val)
+          test_fun(X[1:5, ], rep(m_val, 5))
+          
+          test_fun(X[, 2],   one_val)
+          test_fun(X[, 2],   n_val)
+          test_fun(X[, 1:5], rep(n_val, 5))
+          
+          test_fun(X[2, 2], one_val)
+          test_fun(X[cbind(1:5, 1:5)], one_val)
+          test_fun(X[cbind(1:5, 1:5)], five_val)
+          
+          for (ind in list(1:5, -(1:5), c(TRUE, FALSE, TRUE))) {
+            
+            test_fun(X[ind,    ], one_val)
+            test_fun(X[ind,   2], one_val)
+            test_fun(X[   , ind], one_val)
+            test_fun(X[  2, ind], one_val)
+            test_fun(X[ind, ind], one_val)
+            
+          }
+          
+        }
+        
+      }
+      
+    } 
     
   }
+  
 })
 
 ################################################################################
