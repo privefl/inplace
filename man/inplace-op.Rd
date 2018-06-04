@@ -4,11 +4,17 @@
 \alias{inplace-op}
 \alias{\%*<-\%}
 \alias{\%+<-\%}
+\alias{\%-<-\%}
+\alias{\%/<-\%}
 \title{In-place operators}
 \usage{
 x \%*<-\% value
 
 x \%+<-\% value
+
+x \%-<-\% value
+
+x \%/<-\% value
 }
 \arguments{
 \item{x}{Variable.}

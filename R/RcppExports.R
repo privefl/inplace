@@ -25,6 +25,30 @@ add_submat_one <- function(x, i, j, val) {
     invisible(.Call(`_inplace_add_submat_one`, x, i, j, val))
 }
 
+divide_all_mult <- function(x, i, j, val) {
+    invisible(.Call(`_inplace_divide_all_mult`, x, i, j, val))
+}
+
+divide_subvec_mult <- function(x, i, j, val) {
+    invisible(.Call(`_inplace_divide_subvec_mult`, x, i, j, val))
+}
+
+divide_submat_mult <- function(x, i, j, val) {
+    invisible(.Call(`_inplace_divide_submat_mult`, x, i, j, val))
+}
+
+divide_all_one <- function(x, i, j, val) {
+    invisible(.Call(`_inplace_divide_all_one`, x, i, j, val))
+}
+
+divide_subvec_one <- function(x, i, j, val) {
+    invisible(.Call(`_inplace_divide_subvec_one`, x, i, j, val))
+}
+
+divide_submat_one <- function(x, i, j, val) {
+    invisible(.Call(`_inplace_divide_submat_one`, x, i, j, val))
+}
+
 GET_ERROR_TYPE <- function() {
     .Call(`_inplace_GET_ERROR_TYPE`)
 }
@@ -63,5 +87,29 @@ multiply_subvec_one <- function(x, i, j, val) {
 
 multiply_submat_one <- function(x, i, j, val) {
     invisible(.Call(`_inplace_multiply_submat_one`, x, i, j, val))
+}
+
+substract_all_mult <- function(x, i, j, val) {
+    invisible(.Call(`_inplace_substract_all_mult`, x, i, j, val))
+}
+
+substract_subvec_mult <- function(x, i, j, val) {
+    invisible(.Call(`_inplace_substract_subvec_mult`, x, i, j, val))
+}
+
+substract_submat_mult <- function(x, i, j, val) {
+    invisible(.Call(`_inplace_substract_submat_mult`, x, i, j, val))
+}
+
+substract_all_one <- function(x, i, j, val) {
+    invisible(.Call(`_inplace_substract_all_one`, x, i, j, val))
+}
+
+substract_subvec_one <- function(x, i, j, val) {
+    invisible(.Call(`_inplace_substract_subvec_one`, x, i, j, val))
+}
+
+substract_submat_one <- function(x, i, j, val) {
+    invisible(.Call(`_inplace_substract_submat_one`, x, i, j, val))
 }
 

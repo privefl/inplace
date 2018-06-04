@@ -41,3 +41,34 @@ NULL
 }
 
 ################################################################################
+
+#' @rdname inplace-op
+#' @export
+`%-<-%` <- function(x, value) {
+  
+  infos_call <- interpret_call(substitute(x), value, "susbtract")
+  
+  if (typeof(infos_call$x) == "integer") assert_int_ish(value)
+  
+  do.call(infos_call[[1]], infos_call[-1])
+  
+  invisible()
+}
+
+################################################################################
+
+#' @rdname inplace-op
+#' @export
+`%/<-%` <- function(x, value) {
+  
+  infos_call <- interpret_call(substitute(x), value, "divide")
+  
+  if (typeof(infos_call$x) == "integer") 
+    stop2("Division is not allowed for type integer.")
+  
+  do.call(infos_call[[1]], infos_call[-1])
+  
+  invisible()
+}
+
+################################################################################
