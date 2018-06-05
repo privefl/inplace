@@ -92,3 +92,43 @@ test_that("in-place operators work in common cases", {
 })
 
 ################################################################################
+
+test_that("in-place operators error in special cases", {
+  
+  for (dim_X in list(NULL, c(2, 3))) {
+    
+    X <- 1:6
+    dim(X) <- dim_X
+    X2 <- X + 0
+    
+    # Can't use non-integer values with integers
+    expect_error(X %*<-% 2.2)
+    expect_null(X2 %*<-% 2)
+    expect_null(X2 %*<-% 2.2)
+    
+    # Integers can't be divided
+    expect_error(X %/<-% 2.2)
+    expect_error(X %/<-% 2)
+    expect_error(X[1, ] %/<-% 2.2)
+    expect_error(X[1, ] %/<-% 2)
+    # Doubles can be divided
+    expect_null(X2 %/<-% 2.2)
+    expect_null(X2 %/<-% 2)
+    # Not a matrix
+    if (is.matrix(X2)) {
+      expect_null(X2[1, ] %/<-% 2.2)  
+      expect_null(X2[1, ] %/<-% 2)
+      expect_null(X2[, 2:3] %/<-% 2.2)  
+      expect_null(X2[, 2:3] %/<-% 2)
+    } else {
+      expect_error(X2[1, ] %/<-% 2.2)  
+      expect_error(X2[1, ] %/<-% 2)
+      expect_error(X2[, 2:3] %/<-% 2.2)  
+      expect_error(X2[, 2:3] %/<-% 2)
+    }
+    
+  }
+  
+})
+
+################################################################################
