@@ -18,6 +18,8 @@ LinkingTo:
     Rcpp
 Imports: 
     Rcpp
-Suggests: 
+Suggests:
+    spelling, 
     data.table,
-    testthat
+    testthat,
+    covr

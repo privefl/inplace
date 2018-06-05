@@ -1,3 +1,7 @@
+[![Travis build status](https://travis-ci.org/privefl/inplace.svg?branch=master)](https://travis-ci.org/privefl/inplace)
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/privefl/inplace?branch=master&svg=true)](https://ci.appveyor.com/project/privefl/inplace)
+[![Coverage status](https://codecov.io/gh/privefl/inplace/branch/master/graph/badge.svg)](https://codecov.io/github/privefl/inplace?branch=master)
+ 
 # inplace
 
 In-place operators for R

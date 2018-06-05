@@ -27,3 +27,9 @@ x \%/<-\% value
 \description{
 In-place operators
 }
+\examples{
+mat <- matrix(1:4, 2)
+mat
+mat \%+<-\% 2
+mat
+}

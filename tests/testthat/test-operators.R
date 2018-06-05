@@ -6,46 +6,33 @@ context("test-operators.R")
 
 address <- data.table::address
 
-test_fun <- function(x, val) {
-  
-  call_x   <- deparse(substitute(x))
-  call_val <- deparse(substitute(val))
-  addr0 <- address(X)
-  
-  assign <- sprintf("X2 <- X; %s <- %s",
-                    sub("^X", "X2", call_x),
-                    paste(call_x, op, call_val))
-  
-  eval(parse(text = assign), parent.frame())
-  print(val)
-  print(assign)
-  print(X)
-  print(X2)
-  stopifnot(!(
-    eval(identical(X, X2), parent.frame())
-  ))
-  
-  assign <- sprintf("%s %%%s<-%% %s", call_x, op, call_val)
-  eval(parse(text = assign), parent.frame())
-  expect_true(eval(identical(X, X2), parent.frame()))
-  expect_true(eval(identical(data.table::address(X), addr0), parent.frame()))
-}
-
-X <- rnorm(256, mean = 0, sd = 10)
-DIMS <- list(NULL, c(8, 32))
-
-ind <- 1:5
-op <- "*"
-test_fun(X[ind], 2)
-
-################################################################################
-
 r <- function(n, type) {
-  x <- rnorm(n, mean = 1, sd = 1)
+  x <- rnorm(n, mean = 100, sd = 10)
   `if`(type == "integer", round(x), x)
 }
 
+################################################################################
+
 test_that("in-place operators work in common cases", {
+  
+  test_fun <- function(x, val) {
+    
+    call_x   <- deparse(substitute(x))
+    call_val <- deparse(substitute(val))
+    addr0 <- address(X)
+    
+    assign <- sprintf("{X2 <- X; %s <- %s}",
+                      sub("^X", "X2", call_x),
+                      paste(call_x, op, call_val))
+    
+    eval(parse(text = assign), parent.frame())
+    stopifnot(!(eval(parse(text = "identical(X, X2)"), parent.frame())))
+    
+    assign <- sprintf("%s %%%s<-%% %s", call_x, op, call_val)
+    eval(parse(text = assign), parent.frame())
+    expect_true(eval(identical(X, X2), parent.frame()))
+    expect_true(eval(identical(data.table::address(X), addr0), parent.frame()))
+  }
   
   for (type in c("double", "integer")) {
     
@@ -54,8 +41,9 @@ test_that("in-place operators work in common cases", {
     
     for (op in OPS) {
       
-      for (dim_X in DIMS) {
+      for (dim_X in list(NULL, c(8, 32))) {
         
+        X <- rnorm(256, mean = 0, sd = 10)
         dim(X) <- dim_X
         
         one_val  <- r(1, type)

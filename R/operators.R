@@ -8,6 +8,10 @@
 #' @name inplace-op
 #'
 #' @examples
+#' mat <- matrix(1:4, 2)
+#' mat
+#' mat %+<-% 2
+#' mat
 NULL
 
 ################################################################################
@@ -46,7 +50,7 @@ NULL
 #' @export
 `%-<-%` <- function(x, value) {
   
-  infos_call <- interpret_call(substitute(x), value, "susbtract")
+  infos_call <- interpret_call(substitute(x), value, "substract")
   
   if (typeof(infos_call$x) == "integer") assert_int_ish(value)
   
