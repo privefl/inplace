@@ -32,3 +32,16 @@ system.time(
 mat[1:5, 1:5]
 stopifnot(address(mat) == addr0)
 ```
+
+## Beware
+
+If many names points to the same object, they will be all modified, which is not the default behaviour of base R.
+
+```{r}
+(X <- runif(4))
+X2 <- X
+
+X %*<-% 2
+X
+X2
+```

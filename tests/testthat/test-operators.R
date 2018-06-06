@@ -31,7 +31,7 @@ test_that("in-place operators work in common cases", {
     assign <- sprintf("%s %%%s<-%% %s", call_x, op, call_val)
     eval(parse(text = assign), parent.frame())
     expect_true(eval(identical(X, X2), parent.frame()))
-    expect_true(eval(identical(data.table::address(X), addr0), parent.frame()))
+    expect_true(eval(identical(address(X), addr0), parent.frame()))
   }
   
   for (type in c("double", "integer")) {
@@ -128,6 +128,11 @@ test_that("in-place operators error in special cases", {
     }
     
   }
+  
+  ### Works only with integers and doubles
+  X3 <- as.raw(X)
+  expect_error(X3 %*<-% 3)
+  expect_error(X3[1:5] %*<-% 3)
   
 })
 
