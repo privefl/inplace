@@ -21,17 +21,21 @@ test_that("in-place operators work in common cases", {
     call_val <- deparse(substitute(val))
     addr0 <- address(X)
     
-    assign <- sprintf("{X2 <- X; %s <- %s}",
+    assign <- sprintf("X2 <- X; %s <- %s",
                       sub("^X", "X2", call_x),
                       paste(call_x, op, call_val))
     
     eval(parse(text = assign), parent.frame())
-    stopifnot(!(eval(parse(text = "identical(X, X2)"), parent.frame())))
+    expect_false(eval(parse(text = "identical(X, X2)"), parent.frame()))
     
     assign <- sprintf("%s %%%s<-%% %s", call_x, op, call_val)
     eval(parse(text = assign), parent.frame())
-    expect_true(eval(identical(X, X2), parent.frame()))
-    expect_true(eval(identical(address(X), addr0), parent.frame()))
+    expect_identical(X, X2)
+    expect_identical(address(X), addr0)
+  }
+  
+  multiply_all_one <- function(x, i, j, val) {
+    stop("Don't call the right function.")
   }
   
   for (type in c("double", "integer")) {
@@ -129,10 +133,14 @@ test_that("in-place operators error in special cases", {
     
   }
   
-  ### Works only with integers and doubles
+  # Works only with integers and doubles
   X3 <- as.raw(X)
   expect_error(X3 %*<-% 3)
   expect_error(X3[1:5] %*<-% 3)
+  
+  ## Need test corresponding sizes
+  expect_error(X2 %*<-% 1:2)
+  expect_error(X2 %*<-% 1:7)
   
 })
 

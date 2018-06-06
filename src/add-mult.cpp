@@ -67,7 +67,7 @@ void add_subvec_mult(SEXP x, const NumericVector& i, SEXP j, SEXP val) {
 // [[Rcpp::export]]
 void add_submat_mult(SEXP x,
                           const IntegerVector& i,
-                          const IntegerVector&  j,
+                          const IntegerVector& j,
                           SEXP val) {
   
   DISPATCH(ON_SUB_MAT)
