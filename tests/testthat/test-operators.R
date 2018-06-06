@@ -130,17 +130,17 @@ test_that("in-place operators error in special cases", {
       expect_error(X2[, 2:3] %/<-% 2.2)  
       expect_error(X2[, 2:3] %/<-% 2)
     }
+  
+    # Works only with integers and doubles
+    X3 <- as.raw(X); dim(X3) <- dim(X)
+    expect_error(X3 %*<-% 3)
+    expect_error(X3[1:5] %*<-% 3)
+    
+    ## Need corresponding sizes
+    expect_error(X2 %*<-% 1:2)
+    expect_error(X2 %*<-% 1:7)
     
   }
-  
-  # Works only with integers and doubles
-  X3 <- as.raw(X)
-  expect_error(X3 %*<-% 3)
-  expect_error(X3[1:5] %*<-% 3)
-  
-  ## Need test corresponding sizes
-  expect_error(X2 %*<-% 1:2)
-  expect_error(X2 %*<-% 1:7)
   
 })
 

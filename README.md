@@ -15,7 +15,7 @@ This is under development.
 library(inplace)
 
 address <- data.table::address
-mat <- matrix(rnorm(2e8), 1e4)
+mat <- matrix(rnorm(5e7), 1e4)
 addr0 <- address(mat)
 mat[1:5, 1:5]
 
@@ -30,6 +30,18 @@ system.time(
   mat %*<-% 2
 )
 mat[1:5, 1:5]
+stopifnot(address(mat) == addr0)
+
+## SWEEPS
+means <- colMeans(mat)
+system.time(
+  mat2 <- sweep(mat, 2, means, '-')
+)
+# modification in-place
+system.time(
+  sweep2_in_place(mat, means, '-')
+)
+stopifnot(identical(mat, mat2))
 stopifnot(address(mat) == addr0)
 ```
 

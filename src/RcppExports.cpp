@@ -83,6 +83,28 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
+// add_sweep1
+void add_sweep1(SEXP x, SEXP val);
+RcppExport SEXP _inplace_add_sweep1(SEXP xSEXP, SEXP valSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type val(valSEXP);
+    add_sweep1(x, val);
+    return R_NilValue;
+END_RCPP
+}
+// add_sweep2
+void add_sweep2(SEXP x, SEXP val);
+RcppExport SEXP _inplace_add_sweep2(SEXP xSEXP, SEXP valSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type val(valSEXP);
+    add_sweep2(x, val);
+    return R_NilValue;
+END_RCPP
+}
 // divide_all_mult
 void divide_all_mult(SEXP x, SEXP i, SEXP j, SEXP val);
 RcppExport SEXP _inplace_divide_all_mult(SEXP xSEXP, SEXP iSEXP, SEXP jSEXP, SEXP valSEXP) {
@@ -158,6 +180,28 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const IntegerVector& >::type j(jSEXP);
     Rcpp::traits::input_parameter< SEXP >::type val(valSEXP);
     divide_submat_one(x, i, j, val);
+    return R_NilValue;
+END_RCPP
+}
+// divide_sweep1
+void divide_sweep1(SEXP x, SEXP val);
+RcppExport SEXP _inplace_divide_sweep1(SEXP xSEXP, SEXP valSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type val(valSEXP);
+    divide_sweep1(x, val);
+    return R_NilValue;
+END_RCPP
+}
+// divide_sweep2
+void divide_sweep2(SEXP x, SEXP val);
+RcppExport SEXP _inplace_divide_sweep2(SEXP xSEXP, SEXP valSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type val(valSEXP);
+    divide_sweep2(x, val);
     return R_NilValue;
 END_RCPP
 }
@@ -279,6 +323,28 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
+// multiply_sweep1
+void multiply_sweep1(SEXP x, SEXP val);
+RcppExport SEXP _inplace_multiply_sweep1(SEXP xSEXP, SEXP valSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type val(valSEXP);
+    multiply_sweep1(x, val);
+    return R_NilValue;
+END_RCPP
+}
+// multiply_sweep2
+void multiply_sweep2(SEXP x, SEXP val);
+RcppExport SEXP _inplace_multiply_sweep2(SEXP xSEXP, SEXP valSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type val(valSEXP);
+    multiply_sweep2(x, val);
+    return R_NilValue;
+END_RCPP
+}
 // substract_all_mult
 void substract_all_mult(SEXP x, SEXP i, SEXP j, SEXP val);
 RcppExport SEXP _inplace_substract_all_mult(SEXP xSEXP, SEXP iSEXP, SEXP jSEXP, SEXP valSEXP) {
@@ -357,6 +423,28 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
+// substract_sweep1
+void substract_sweep1(SEXP x, SEXP val);
+RcppExport SEXP _inplace_substract_sweep1(SEXP xSEXP, SEXP valSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type val(valSEXP);
+    substract_sweep1(x, val);
+    return R_NilValue;
+END_RCPP
+}
+// substract_sweep2
+void substract_sweep2(SEXP x, SEXP val);
+RcppExport SEXP _inplace_substract_sweep2(SEXP xSEXP, SEXP valSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type val(valSEXP);
+    substract_sweep2(x, val);
+    return R_NilValue;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_inplace_add_all_mult", (DL_FUNC) &_inplace_add_all_mult, 4},
@@ -365,12 +453,16 @@ static const R_CallMethodDef CallEntries[] = {
     {"_inplace_add_all_one", (DL_FUNC) &_inplace_add_all_one, 4},
     {"_inplace_add_subvec_one", (DL_FUNC) &_inplace_add_subvec_one, 4},
     {"_inplace_add_submat_one", (DL_FUNC) &_inplace_add_submat_one, 4},
+    {"_inplace_add_sweep1", (DL_FUNC) &_inplace_add_sweep1, 2},
+    {"_inplace_add_sweep2", (DL_FUNC) &_inplace_add_sweep2, 2},
     {"_inplace_divide_all_mult", (DL_FUNC) &_inplace_divide_all_mult, 4},
     {"_inplace_divide_subvec_mult", (DL_FUNC) &_inplace_divide_subvec_mult, 4},
     {"_inplace_divide_submat_mult", (DL_FUNC) &_inplace_divide_submat_mult, 4},
     {"_inplace_divide_all_one", (DL_FUNC) &_inplace_divide_all_one, 4},
     {"_inplace_divide_subvec_one", (DL_FUNC) &_inplace_divide_subvec_one, 4},
     {"_inplace_divide_submat_one", (DL_FUNC) &_inplace_divide_submat_one, 4},
+    {"_inplace_divide_sweep1", (DL_FUNC) &_inplace_divide_sweep1, 2},
+    {"_inplace_divide_sweep2", (DL_FUNC) &_inplace_divide_sweep2, 2},
     {"_inplace_GET_ERROR_TYPE", (DL_FUNC) &_inplace_GET_ERROR_TYPE, 0},
     {"_inplace_GET_ERROR_DIM", (DL_FUNC) &_inplace_GET_ERROR_DIM, 0},
     {"_inplace_GET_ERROR_BOUNDS", (DL_FUNC) &_inplace_GET_ERROR_BOUNDS, 0},
@@ -381,12 +473,16 @@ static const R_CallMethodDef CallEntries[] = {
     {"_inplace_multiply_all_one", (DL_FUNC) &_inplace_multiply_all_one, 4},
     {"_inplace_multiply_subvec_one", (DL_FUNC) &_inplace_multiply_subvec_one, 4},
     {"_inplace_multiply_submat_one", (DL_FUNC) &_inplace_multiply_submat_one, 4},
+    {"_inplace_multiply_sweep1", (DL_FUNC) &_inplace_multiply_sweep1, 2},
+    {"_inplace_multiply_sweep2", (DL_FUNC) &_inplace_multiply_sweep2, 2},
     {"_inplace_substract_all_mult", (DL_FUNC) &_inplace_substract_all_mult, 4},
     {"_inplace_substract_subvec_mult", (DL_FUNC) &_inplace_substract_subvec_mult, 4},
     {"_inplace_substract_submat_mult", (DL_FUNC) &_inplace_substract_submat_mult, 4},
     {"_inplace_substract_all_one", (DL_FUNC) &_inplace_substract_all_one, 4},
     {"_inplace_substract_subvec_one", (DL_FUNC) &_inplace_substract_subvec_one, 4},
     {"_inplace_substract_submat_one", (DL_FUNC) &_inplace_substract_submat_one, 4},
+    {"_inplace_substract_sweep1", (DL_FUNC) &_inplace_substract_sweep1, 2},
+    {"_inplace_substract_sweep2", (DL_FUNC) &_inplace_substract_sweep2, 2},
     {NULL, NULL, 0}
 };
 

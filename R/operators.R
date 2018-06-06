@@ -22,7 +22,7 @@ NULL
   
   infos_call <- interpret_call(substitute(x), value, "multiply")
   
-  if (typeof(infos_call$x) == "integer") assert_int_ish(value)
+  assert_for_int(infos_call$x, value, '*')
   
   do.call(infos_call[[1]], infos_call[-1])
   
@@ -37,7 +37,7 @@ NULL
   
   infos_call <- interpret_call(substitute(x), value, "add")
   
-  if (typeof(infos_call$x) == "integer") assert_int_ish(value)
+  assert_for_int(infos_call$x, value, '+')
   
   do.call(infos_call[[1]], infos_call[-1])
   
@@ -52,7 +52,7 @@ NULL
   
   infos_call <- interpret_call(substitute(x), value, "substract")
   
-  if (typeof(infos_call$x) == "integer") assert_int_ish(value)
+  assert_for_int(infos_call$x, value, '-')
   
   do.call(infos_call[[1]], infos_call[-1])
   
@@ -67,8 +67,7 @@ NULL
   
   infos_call <- interpret_call(substitute(x), value, "divide")
   
-  if (typeof(infos_call$x) == "integer") 
-    stop2("Division is not allowed for type integer.")
+  assert_for_int(infos_call$x, value, '/')
   
   do.call(infos_call[[1]], infos_call[-1])
   
