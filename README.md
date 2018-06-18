@@ -31,7 +31,7 @@ system.time(
 mat[1:5, 1:5]
 stopifnot(address(mat) == addr0)
 
-# Also works with subset
+# Also works with a subset
 mat[1:2, 1:2] %*<-% 2
 mat[1:5, 1:5]
 stopifnot(address(mat) == addr0)
