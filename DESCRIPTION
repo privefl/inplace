@@ -1,6 +1,6 @@
 Package: inplace
-Version: 0.1.0
-Date: 2018-06-06
+Version: 0.1.1
+Date: 2020-08-13
 Title: In-place Operators for R
 Description: It provides in-place operators for R 
     that are equivalent to '+=', '-=', '*=', '/=' in C++. 
@@ -15,7 +15,7 @@ Encoding: UTF-8
 LazyData: true
 ByteCompile: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 6.0.1
+RoxygenNote: 7.1.1
 LinkingTo: 
     Rcpp
 Imports: 

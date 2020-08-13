@@ -24,7 +24,7 @@ test_that("in-place operators work in common cases", {
 
     assign <- sprintf("sweep%s_in_place(X, val, op)", margin)
     eval(parse(text = assign))
-    expect_identical(X, X2)
+    expect_equal(X, X2)
     expect_identical(address(X), addr0)
   }
 

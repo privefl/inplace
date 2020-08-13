@@ -6,9 +6,18 @@
 \alias{inplace-package}
 \title{inplace: In-place Operators for R}
 \description{
-It provides in-place operators for R
-that are equivalent to '+=', '-=', '*=', '/=' in C++.
-Those can be applied on integer|double vectors|matrices.
+It provides in-place operators for R 
+    that are equivalent to '+=', '-=', '*=', '/=' in C++. 
+    Those can be applied on integer|double vectors|matrices.
+    You have also access to sweep operations (in-place).
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/privefl/inplace}
+  \item Report bugs at \url{https://github.com/privefl/inplace/issues}
+}
+
 }
 \author{
 \strong{Maintainer}: Florian Privé \email{florian.prive.21@gmail.com}
