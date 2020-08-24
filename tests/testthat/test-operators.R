@@ -30,7 +30,7 @@ test_that("in-place operators work in common cases", {
     
     assign <- sprintf("%s %%%s<-%% %s", call_x, op, call_val)
     eval(parse(text = assign), parent.frame())
-    expect_identical(X, X2)
+    expect_equal(X, X2)
     expect_identical(address(X), addr0)
   }
   

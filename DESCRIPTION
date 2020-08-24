@@ -1,6 +1,6 @@
 Package: inplace
-Version: 0.1.1
-Date: 2020-08-13
+Version: 0.1.2
+Date: 2020-08-24
 Title: In-place Operators for R
 Description: It provides in-place operators for R 
     that are equivalent to '+=', '-=', '*=', '/=' in C++. 
